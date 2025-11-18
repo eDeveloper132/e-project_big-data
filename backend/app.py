@@ -1,3 +1,9 @@
+"""
+Main Flask application for the EarthScape Climate Analytics Platform.
+
+This script initializes the Flask app, defines API endpoints for user authentication,
+data retrieval, and feedback submission. It also serves the frontend application.
+"""
 from flask import Flask, jsonify, request, session, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -16,7 +22,11 @@ MOCK_USERS = {
 }
 
 def create_app():
-    app = Flask(__name__, static_folder='../../frontend', static_url_path='')
+    # Define the absolute path to the frontend folder
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    frontend_folder = os.path.join(project_root, 'frontend')
+    
+    app = Flask(__name__, static_folder=frontend_folder, static_url_path='')
     app.secret_key = os.urandom(24)
 
     @app.route('/')

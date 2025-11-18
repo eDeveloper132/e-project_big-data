@@ -1,3 +1,9 @@
+"""
+Flask configuration settings for the EarthScape application.
+
+This file defines separate configuration classes for different environments
+(Development, Testing, Production) to keep settings organized and secure.
+"""
 import os
 
 class Config:

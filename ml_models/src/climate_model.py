@@ -1,16 +1,30 @@
+"""
+Machine Learning model for climate trend prediction and anomaly detection.
+
+This script defines a `ClimatePredictor` class that uses a linear regression
+model from scikit-learn to predict future temperature trends. It also includes
+a method for detecting statistical anomalies in temperature readings.
+"""
+import os
+
+import joblib
+import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
-import numpy as np
-import joblib
+from sklearn.model_selection import train_test_split
+
+# Define the path for the saved model relative to this script's location
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(SCRIPT_DIR, 'climate_model.pkl')
 
 class ClimatePredictor:
     """
     A machine learning model to predict future climate trends and detect anomalies.
     """
-    def __init__(self):
+    def __init__(self, model_path=MODEL_PATH):
         self.model = LinearRegression()
+        self.model_path = model_path
 
     def _generate_dummy_processed_data(self, num_records=100):
         """
@@ -54,16 +68,15 @@ class ClimatePredictor:
         print(f"Model training complete. Mean Squared Error: {mse:.2f}")
 
         # Save the trained model
-        joblib.dump(self.model, 'climate_model.pkl')
-        print("Model saved to climate_model.pkl")
+        joblib.dump(self.model, self.model_path)
+        print(f"Model saved to {self.model_path}")
 
     def predict(self, future_time_index):
         """
-
         Predicts the average temperature for a future time index.
         """
         # In a real application, load the model from file
-        # self.model = joblib.load('climate_model.pkl')
+        # self.model = joblib.load(self.model_path)
         return self.model.predict(np.array([[future_time_index]]))
 
     def detect_anomalies(self, historical_data, current_temp):

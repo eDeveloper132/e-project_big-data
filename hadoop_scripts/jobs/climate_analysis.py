@@ -1,3 +1,9 @@
+"""
+A MapReduce job, using the mrjob library, to process climate data.
+
+This script reads CSV data and calculates the average temperature for each region,
+handling missing data gracefully.
+"""
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 

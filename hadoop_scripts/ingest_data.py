@@ -1,13 +1,23 @@
+"""
+Generates dummy climate data for the EarthScape project.
+
+This script creates two files in the project root:
+1.  `dummy_climate_data.csv`: Simulates historical batch data from weather stations.
+2.  `sensor_data.json`: Simulates real-time streams from IoT sensors.
+"""
 import csv
 import json
 import random
 from datetime import datetime, timedelta
+import os
 
 # --- Configuration ---
 NUM_RECORDS_CSV = 1000
 NUM_RECORDS_JSON = 100
-CSV_OUTPUT_FILE = 'dummy_climate_data.csv'
-JSON_OUTPUT_FILE = 'sensor_data.json'
+# Get the project root directory (assuming this script is in hadoop_scripts/)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV_OUTPUT_FILE = os.path.join(PROJECT_ROOT, 'dummy_climate_data.csv')
+JSON_OUTPUT_FILE = os.path.join(PROJECT_ROOT, 'sensor_data.json')
 REGIONS = ['North', 'South', 'East', 'West']
 START_DATE = datetime(2023, 1, 1)
 
