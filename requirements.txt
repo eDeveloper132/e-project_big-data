@@ -1,0 +1,7 @@
+Flask
+Werkzeug
+mrjob
+scikit-learn
+pandas
+numpy
+requests

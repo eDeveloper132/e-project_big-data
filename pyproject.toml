@@ -1,0 +1,15 @@
+[project]
+name = "e-project-big-data"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "Flask",
+    "Werkzeug",
+    "mrjob",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "requests"
+]
